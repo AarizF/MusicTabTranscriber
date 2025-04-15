@@ -9,13 +9,13 @@ interface FileUploadProps {
 const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
-      onFileUpload(acceptedFiles[0]);
+      onFileUpload(acceptedFiles[0]); // Pass the first file to the parent
     }
   }, [onFileUpload]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { 'audio/mpeg': ['.mp3'] }, // Correct MIME type mapping
+    accept: { 'audio/mpeg': ['.mp3'] }, // Accept only MP3 files
   });
 
   return (

@@ -7,29 +7,29 @@ const Home: React.FC = () => {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
 
   const handleFileUpload = async (file: File) => {
-    setLoading(true);
-    setPdfUrl(null);
+    setLoading(true); // Set loading to true
+    setPdfUrl(null); // Clear any previous PDF URL
 
     try {
-      const formData = new FormData(); // Create FormData object
-      formData.append('file', file); // Append the file to FormData
+      const formData = new FormData();
+      formData.append('file', file);
 
-      const response = await fetch('/api/transcribe', {
+      const response = await fetch('/transcribe', {
         method: 'POST',
-        body: formData, // Pass the FormData object here
+        body: formData,
       });
 
       if (response.ok) {
         const blob = await response.blob();
         const url = URL.createObjectURL(blob);
-        setPdfUrl(url);
+        setPdfUrl(url); // Set the URL for the PDF file
       } else {
         console.error('Failed to transcribe audio');
       }
     } catch (error) {
       console.error('Error uploading file:', error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Set loading to false after the request completes
     }
   };
 
