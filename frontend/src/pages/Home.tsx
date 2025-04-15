@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Box, CircularProgress, Typography } from '@mui/material';
-import FileUpload from '../components/FileUpload';
+import React, { useState } from "react";
+import { Box, CircularProgress, Typography } from "@mui/material";
+import FileUpload from "../components/FileUpload";
 
 const Home: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -12,12 +12,12 @@ const Home: React.FC = () => {
 
     try {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
 
       const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
       const response = await fetch(`${backendUrl}/transcribe`, {
-        method: 'POST',
+        method: "POST",
         body: formData,
       });
 
@@ -26,10 +26,10 @@ const Home: React.FC = () => {
         const url = URL.createObjectURL(blob);
         setPdfUrl(url); // Set the URL for the PDF file
       } else {
-        console.error('Failed to transcribe audio');
+        console.error("Failed to transcribe audio");
       }
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error("Error uploading file:", error);
     } finally {
       setLoading(false); // Set loading to false after the request completes
     }
@@ -38,13 +38,13 @@ const Home: React.FC = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        bgcolor: '#121212',
-        color: '#fff',
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        bgcolor: "#121212",
+        color: "#fff",
       }}
     >
       <Typography variant="h4" gutterBottom>
@@ -53,7 +53,11 @@ const Home: React.FC = () => {
       {loading ? (
         <CircularProgress color="secondary" />
       ) : pdfUrl ? (
-        <a href={pdfUrl} download="transcription.pdf" style={{ color: '#90caf9' }}>
+        <a
+          href={pdfUrl}
+          download="transcription.pdf"
+          style={{ color: "#90caf9" }}
+        >
           Download PDF
         </a>
       ) : (
