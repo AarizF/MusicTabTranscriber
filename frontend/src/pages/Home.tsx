@@ -1,4 +1,3 @@
-// filepath: [Home.tsx](http://_vscodecontentref_/3)
 import React, { useState } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import FileUpload from '../components/FileUpload';
@@ -12,9 +11,12 @@ const Home: React.FC = () => {
     setPdfUrl(null);
 
     try {
+      const formData = new FormData(); // Create FormData object
+      formData.append('file', file); // Append the file to FormData
+
       const response = await fetch('/api/transcribe', {
         method: 'POST',
-        body: new FormData().append('file', file),
+        body: formData, // Pass the FormData object here
       });
 
       if (response.ok) {

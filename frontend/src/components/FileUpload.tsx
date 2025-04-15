@@ -1,4 +1,3 @@
-// filepath: [FileUpload.tsx](http://_vscodecontentref_/4)
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Box } from '@mui/material';
@@ -14,7 +13,10 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
     }
   }, [onFileUpload]);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop, accept: '.mp3' });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: { 'audio/mpeg': ['.mp3'] }, // Correct MIME type mapping
+  });
 
   return (
     <Box
