@@ -14,7 +14,9 @@ const Home: React.FC = () => {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('/transcribe', {
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+      const response = await fetch(`${backendUrl}/transcribe`, {
         method: 'POST',
         body: formData,
       });
