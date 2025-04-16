@@ -1,0 +1,8 @@
+flask
+demucs
+torchaudio
+pytz
+tensorflow  # Required by crepe (if using Python <= 3.11)
+crepe
+librosa  # Alternative for pitch analysis (if needed)
+soundfile  # Required by torchaudio

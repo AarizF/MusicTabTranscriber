@@ -2,9 +2,10 @@ import crepe
 import numpy as np
 from pathlib import Path
 import torchaudio
+import torch
 
 
-def analyze_pitch(input_file: str) -> list[dict]:
+def analyze_pitch(input_path: str) -> list[dict]:
     """
     Analyzes the pitch and notes from the input audio file using CREPE.
 
@@ -15,7 +16,7 @@ def analyze_pitch(input_file: str) -> list[dict]:
         list[dict]: A list of dictionaries containing time, frequency, and note information.
     """
     # Load the audio file
-    audio, sr = torchaudio.load(input_file)
+    audio, sr = torchaudio.load(input_path)
     audio = audio.mean(0).numpy()  # Convert to mono if stereo
 
     # Ensure the sample rate is 16 kHz (CREPE requirement)
@@ -34,6 +35,8 @@ def analyze_pitch(input_file: str) -> list[dict]:
         if c > 0.5:  # Only consider confident predictions
             note = frequency_to_note(f)
             results.append({"time": t, "frequency": f, "note": note})
+
+    print(results[0:100])  # Print the first 100 results for debugging
 
     return results
 
