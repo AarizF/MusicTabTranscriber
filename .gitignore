@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 *.pyo
 .vscode/
+frontend/node_modules/
