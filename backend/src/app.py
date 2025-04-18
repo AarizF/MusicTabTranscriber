@@ -2,6 +2,8 @@ from flask import Flask, request, send_file
 from pathlib import Path
 from demucs_infer import separate_guitar
 from crepe_infer import analyze_pitch
+from tab_generator import generate_tabs
+from pdf_generator import save_tabs_to_pdf
 import subprocess
 from datetime import datetime
 import pytz
@@ -74,8 +76,13 @@ def transcribe():
     raw_music_data_path = separate_guitar(wav_file_path)
     music_notes = analyze_pitch(raw_music_data_path)
 
-    # For now, return a dummy PDF file
-    return send_file("dummy.pdf", as_attachment=True)
+    # Generate tabs and save to PDF
+    tabs = generate_tabs(music_notes)
+    pdf_path = BASE_DIR / "tabs.pdf"
+    save_tabs_to_pdf(tabs, str(pdf_path))
+
+    # Return the generated PDF file
+    return send_file(pdf_path, as_attachment=True)
 
 
 if __name__ == "__main__":
