@@ -1,63 +1,29 @@
-import crepe
-import numpy as np
-from pathlib import Path
-import torchaudio
-import torch
+from __future__ import annotations
+
+from .models import NoteEvent, TechniqueHint
 
 
 def analyze_pitch(input_path: str) -> list[dict]:
     """
-    Analyzes the pitch and notes from the input audio file using CREPE.
-
-    Args:
-        input_file (str): Path to the input audio file (e.g., WAV).
-
-    Returns:
-        list[dict]: A list of dictionaries containing time, frequency, and note information.
+    Compatibility wrapper for older code paths.
+    The rebuilt app uses Basic Pitch first, but this helper still exposes
+    simple note dictionaries for anyone calling the legacy function.
     """
-    # Load the audio file
-    audio, sr = torchaudio.load(input_path)
-    audio = audio.mean(0).numpy()  # Convert to mono if stereo
+    from .transcription import transcribe_with_fallback
 
-    # Ensure the sample rate is 16 kHz (CREPE requirement)
-    if sr != 16000:
-        audio = torchaudio.transforms.Resample(orig_freq=sr, new_freq=16000)(
-            torch.tensor(audio)
-        ).numpy()
-        sr = 16000
-
-    # Analyze pitch using CREPE
-    time, frequency, confidence, activation = crepe.predict(audio, sr, viterbi=True)
-
-    # Map frequencies to musical notes
-    results = []
-    for t, f, c in zip(time, frequency, confidence):
-        if c > 0.5:  # Only consider confident predictions
-            note = frequency_to_note(f)
-            results.append({"time": t, "frequency": f, "note": note})
-
-    print(results[0:100])  # Print the first 100 results for debugging
-
-    return results
+    events = transcribe_with_fallback(input_path, "original")
+    return [
+        {
+            "time": event.onset_sec,
+            "frequency": 440.0 * (2 ** ((event.midi_pitch - 69) / 12)),
+            "note": midi_to_note_name(event.midi_pitch),
+            "technique": TechniqueHint(event.technique_hint).value,
+        }
+        for event in events
+    ]
 
 
-def frequency_to_note(frequency: float) -> str:
-    """
-    Converts a frequency to the nearest musical note.
-
-    Args:
-        frequency (float): Frequency in Hz.
-
-    Returns:
-        str: The corresponding musical note (e.g., A4, C#5).
-    """
-    if frequency <= 0:
-        return "N/A"
-
-    # Reference frequency for A4
-    A4 = 440.0
-    semitones = 12 * np.log2(frequency / A4)
-    note_index = int(round(semitones)) % 12
-    octave = int(np.floor(np.log2(frequency / A4) + 4))
-    notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-    return f"{notes[note_index]}{octave}"
+def midi_to_note_name(midi_pitch: int) -> str:
+    names = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    octave = (midi_pitch // 12) - 1
+    return f"{names[midi_pitch % 12]}{octave}"

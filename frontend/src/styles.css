@@ -1,0 +1,287 @@
+:root {
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: #f7f0e8;
+  background:
+    radial-gradient(circle at top left, rgba(255, 163, 102, 0.22), transparent 28%),
+    radial-gradient(circle at right center, rgba(90, 150, 255, 0.18), transparent 26%),
+    linear-gradient(145deg, #111218, #181d29 52%, #101820);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.shell {
+  width: min(1120px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 48px 0 80px;
+}
+
+.hero {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffa35c;
+  font-size: 0.78rem;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  line-height: 0.96;
+  max-width: 10ch;
+}
+
+.lede {
+  max-width: 46rem;
+  color: rgba(247, 240, 232, 0.8);
+  font-size: 1.05rem;
+}
+
+.panel {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(7, 10, 18, 0.68);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.upload-panel {
+  padding: 24px;
+}
+
+.upload-form {
+  display: grid;
+  gap: 18px;
+}
+
+.dropzone {
+  display: grid;
+  gap: 8px;
+  padding: 28px;
+  border: 1px dashed rgba(255, 163, 92, 0.6);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 163, 92, 0.1), rgba(255, 163, 92, 0.03));
+  cursor: pointer;
+}
+
+.dropzone input {
+  display: none;
+}
+
+.dropzone span {
+  font-size: 1.15rem;
+}
+
+.dropzone small {
+  color: rgba(247, 240, 232, 0.7);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.controls label {
+  display: grid;
+  gap: 8px;
+}
+
+.controls select,
+.controls input[type="text"] {
+  min-width: 160px;
+}
+
+.toggle {
+  grid-auto-flow: column;
+  align-items: center;
+}
+
+.primary-button,
+.secondary-button,
+.controls select,
+.controls input[type="text"] {
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+}
+
+.primary-button {
+  width: fit-content;
+  background: linear-gradient(135deg, #ffa35c, #ff7642);
+  color: #101318;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.secondary-button {
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.status-panel,
+.summary-panel,
+.details-panel,
+.engraving-panel {
+  padding: 24px;
+}
+
+.status-row,
+.summary-metrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.summary-metrics {
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.summary-metrics div {
+  display: grid;
+  gap: 4px;
+}
+
+.summary-metrics strong {
+  font-size: 1.8rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 14px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6db5ff, #ffa35c);
+}
+
+.artifact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.artifact-link {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(109, 181, 255, 0.15);
+  border: 1px solid rgba(109, 181, 255, 0.25);
+}
+
+.warning-list,
+.error-text {
+  margin-top: 12px;
+  color: #ffb7a2;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.engraving-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.zoom-control {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.engraving-canvas {
+  margin-top: 18px;
+  overflow: auto;
+  border-radius: 18px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.engraving-canvas svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.muted-copy {
+  color: rgba(247, 240, 232, 0.72);
+}
+
+@media (max-width: 840px) {
+  .shell {
+    width: min(100vw - 20px, 1120px);
+    padding-top: 28px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .details-header {
+    flex-direction: column;
+  }
+
+  .engraving-controls {
+    width: 100%;
+  }
+}
