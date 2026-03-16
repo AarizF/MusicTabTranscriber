@@ -1,0 +1,124 @@
+{
+  "summary": {
+    "samples_evaluated": 5,
+    "average_onset_f1": 0.7191258463809957,
+    "average_note_f1": 0.44166890406041714,
+    "average_pitch_accuracy": 1.0,
+    "average_onset_precision": 0.726223233995585,
+    "average_onset_recall": 0.7277469486416244,
+    "average_note_precision": 0.4469271124765379,
+    "average_note_recall": 0.4457797342026424
+  },
+  "results": [
+    {
+      "sample": "00_BN1-129-Eb_solo",
+      "reference_note_count": 71,
+      "predicted_note_count": 66,
+      "raw_note_count": 75,
+      "used_fallback": false,
+      "average_confidence": 0.6863694647044847,
+      "warnings": [],
+      "cleanup_warnings": [
+        "Removed 3 ultra-short note fragments.",
+        "Merged 6 duplicate or over-segmented note pairs."
+      ],
+      "metrics": {
+        "onset_precision": 0.6666666666666666,
+        "onset_recall": 0.6197183098591549,
+        "onset_f1": 0.6423357664233577,
+        "note_precision": 0.4090909090909091,
+        "note_recall": 0.38028169014084506,
+        "note_f1": 0.39416058394160586,
+        "pitch_accuracy": 1.0
+      }
+    },
+    {
+      "sample": "00_Funk1-114-Ab_solo",
+      "reference_note_count": 58,
+      "predicted_note_count": 50,
+      "raw_note_count": 54,
+      "used_fallback": false,
+      "average_confidence": 0.7272722512483597,
+      "warnings": [],
+      "cleanup_warnings": [
+        "Removed 2 ultra-short note fragments.",
+        "Merged 1 duplicate or over-segmented note pairs.",
+        "Suppressed 1 likely octave-ghost notes."
+      ],
+      "metrics": {
+        "onset_precision": 0.86,
+        "onset_recall": 0.7413793103448276,
+        "onset_f1": 0.7962962962962963,
+        "note_precision": 0.66,
+        "note_recall": 0.5689655172413793,
+        "note_f1": 0.6111111111111112,
+        "pitch_accuracy": 1.0
+      }
+    },
+    {
+      "sample": "00_Jazz1-130-D_solo",
+      "reference_note_count": 57,
+      "predicted_note_count": 85,
+      "raw_note_count": 86,
+      "used_fallback": false,
+      "average_confidence": 0.5785689413547516,
+      "warnings": [],
+      "cleanup_warnings": [
+        "Removed 1 ultra-short note fragments."
+      ],
+      "metrics": {
+        "onset_precision": 0.6,
+        "onset_recall": 0.8947368421052632,
+        "onset_f1": 0.7183098591549296,
+        "note_precision": 0.35294117647058826,
+        "note_recall": 0.5263157894736842,
+        "note_f1": 0.4225352112676057,
+        "pitch_accuracy": 1.0
+      }
+    },
+    {
+      "sample": "00_Rock1-90-C#_solo",
+      "reference_note_count": 178,
+      "predicted_note_count": 151,
+      "raw_note_count": 163,
+      "used_fallback": false,
+      "average_confidence": 0.6971125963902631,
+      "warnings": [],
+      "cleanup_warnings": [
+        "Removed 1 ultra-short note fragments.",
+        "Merged 11 duplicate or over-segmented note pairs."
+      ],
+      "metrics": {
+        "onset_precision": 0.8013245033112583,
+        "onset_recall": 0.6797752808988764,
+        "onset_f1": 0.7355623100303953,
+        "note_precision": 0.39072847682119205,
+        "note_recall": 0.33146067415730335,
+        "note_f1": 0.3586626139817629,
+        "pitch_accuracy": 1.0
+      }
+    },
+    {
+      "sample": "00_SS1-100-C#_solo",
+      "reference_note_count": 64,
+      "predicted_note_count": 64,
+      "raw_note_count": 66,
+      "used_fallback": false,
+      "average_confidence": 0.6670779627747834,
+      "warnings": [],
+      "cleanup_warnings": [
+        "Removed 1 ultra-short note fragments.",
+        "Merged 1 duplicate or over-segmented note pairs."
+      ],
+      "metrics": {
+        "onset_precision": 0.703125,
+        "onset_recall": 0.703125,
+        "onset_f1": 0.703125,
+        "note_precision": 0.421875,
+        "note_recall": 0.421875,
+        "note_f1": 0.421875,
+        "pitch_accuracy": 1.0
+      }
+    }
+  ]
+}
