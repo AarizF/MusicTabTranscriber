@@ -1,43 +1,23 @@
 {
-  "name": "frontend",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "music-tab-transcriber-frontend",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@mui/material": "^7.0.2",
-    "axios": "^1.8.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-dropzone": "^14.3.8",
-    "react-scripts": "^5.0.1",
-    "typescript": "^4.9.5"
+    "verovio": "^6.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "@types/react-dropzone": "^4.2.2"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.4"
   }
 }
