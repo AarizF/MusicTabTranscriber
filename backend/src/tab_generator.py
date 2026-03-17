@@ -90,6 +90,13 @@ def generate_tab_events(note_events: list[NoteEvent], options: JobOptions) -> li
             current_costs[position] = best_cost + base_cost
             current_parents[position] = best_parent
 
+        if all(cost == inf for cost in current_costs.values()):
+            current_costs = {
+                position: position.fret * (0.06 if options.prefer_lower_positions else 0.0)
+                for position in event_candidates
+            }
+            current_parents = {position: None for position in event_candidates}
+
         states.append(current_costs)
         parents.append(current_parents)
 
@@ -97,11 +104,14 @@ def generate_tab_events(note_events: list[NoteEvent], options: JobOptions) -> li
         return []
 
     final_position = min(states[-1], key=states[-1].get)
-    chosen_positions = [final_position]
+    chosen_positions: list[Position] = [final_position]
+    current_position = final_position
     for index in range(len(parents) - 1, 0, -1):
-        parent = parents[index][chosen_positions[-1]]
-        if parent is not None:
-            chosen_positions.append(parent)
+        parent = parents[index].get(current_position)
+        if parent is None:
+            parent = min(states[index - 1], key=states[index - 1].get)
+        chosen_positions.append(parent)
+        current_position = parent
     chosen_positions.reverse()
 
     tab_events: list[TabEvent] = []
